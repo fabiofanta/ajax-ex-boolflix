@@ -43,9 +43,7 @@ $(document).ready(function() {
             },
             method:'GET',
             success: function(data) {
-                // console.log(data);
                 var videos = data.results;
-                // console.log(videos);
                 appendCard(videos,queryType,position);
                 appendDetails(queryType,position);
                 starsFill();
@@ -57,12 +55,16 @@ $(document).ready(function() {
         });
     };
 
-    function cast5(array) {
+    function arrLenCheck(array) {
         if (array.length <= 5) {
             var arrLength = array.length;
         } else {
             var arrLength = 5;
         };
+        return arrLength
+    };
+
+    function stringJoin(array,arrLength) {
         var cast = [];
         for (var i = 0; i < arrLength; i++) {
              var actor = array[i].name;
@@ -74,7 +76,6 @@ $(document).ready(function() {
     function appendDetails(queryType,position) {
         $(position  + ' .card').each(function() {
             var id = $(this).data('id');
-            console.log(id);
             apiTvMovie(queryType,id,this);
 
         });
@@ -90,10 +91,12 @@ $(document).ready(function() {
             method:'GET',
             success: function(data) {
                 var cast = data.credits.cast;
-                console.log(cast);
-                var castString = cast5(cast);
-                console.log(castString);
+                var genres = data.genres;
+                var arrLen = arrLenCheck(cast);
+                var castString = stringJoin(cast,arrLen);
+                var genresString = stringJoin(genres,genres.length);
                 $(position).find('.card-description').append(castString);
+                $(position).find('.card-description').append(genresString);
             },
             error: function(err) {
                 alert('Error!');
