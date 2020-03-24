@@ -23,8 +23,8 @@ $(document).ready(function() {
         $('.card').remove(); // reset search
         var searchBData = $('#input-bar').val();
         if (searchBData.length !== 0) {
-            apiSearch(searchBData,querySearch,searchMovie,'.card-container');
-            apiSearch(searchBData,querySearch,searchTv,'.card-container2');
+            apiSearch(searchBData,searchMovie,'.movies');
+            apiSearch(searchBData,searchTv,'.tv-shows');
 
         } else {
             alert('Inserisci qualcosa');
@@ -32,9 +32,9 @@ $(document).ready(function() {
 
     };
 
-    function apiSearch(queryText,queryCat,queryType,position) {
+    function apiSearch(queryText,queryType,position) {
         $.ajax({
-            url: apiBaseUrl + '/' + queryCat + '/' + queryType,
+            url: apiBaseUrl + '/search/' + queryType,
             data: {
                 api_key: '0e9052ad7b0a0c76eb018c431e65c6ce',
                 query: queryText,
@@ -46,9 +46,9 @@ $(document).ready(function() {
                 // console.log(data);
                 var videos = data.results;
                 // console.log(videos);
-                loop(videos,queryType,position);
+                appendCard(videos,queryType,position);
+                appendDetails(queryType,position);
                 starsFill();
-                test(queryType,position);
             },
             error: function(err) {
                 alert('Error!');
@@ -71,19 +71,18 @@ $(document).ready(function() {
     return cast.join()
 };
 
-    function test(queryType,position) {
+    function appendDetails(queryType,position) {
         $(position  + ' .card').each(function() {
             var id = $(this).data('id');
             console.log(id);
-            var self = this;
-            apiTvMovie(queryType,id,self);
+            apiTvMovie(queryType,id,this);
 
         });
     };
 
-    function apiTvMovie(queryType,id,position) {
+    function apiTvMovie(qryTyp,id,position) {
         $.ajax({
-            url: apiBaseUrl + '/' + queryType + '/' + id + '?',
+            url: apiBaseUrl + '/' + qryTyp + '/' + id + '?',
             data: {
                 api_key: '0e9052ad7b0a0c76eb018c431e65c6ce',
                 append_to_response: 'credits',
@@ -92,9 +91,9 @@ $(document).ready(function() {
             success: function(data) {
                 var cast = data.credits.cast;
                 console.log(cast);
-                var ciao = cast5(cast);
-                console.log(ciao);
-                $(position).find('.card-description').append(ciao);
+                var castString = cast5(cast);
+                console.log(castString);
+                $(position).find('.card-description').append(castString);
             },
             error: function(err) {
                 alert('Error!');
@@ -115,7 +114,7 @@ $(document).ready(function() {
         };
     };
 
-    function loop(arrays,queryType,position) {
+    function appendCard(arrays,queryType,position) {
         for (var i = 0; i < arrays.length; i++) {
             var array = arrays[i];
             // console.log(array);
