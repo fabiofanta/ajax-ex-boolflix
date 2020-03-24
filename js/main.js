@@ -6,7 +6,6 @@ $(document).ready(function() {
     //end handlebars
 
     var apiBaseUrl = 'https://api.themoviedb.org/3';
-    var querySearch = 'search'
     var searchMovie = 'movie';
     var searchTv = 'tv';
     var apiPoster = 'https://image.tmdb.org/t/p/';
@@ -25,7 +24,6 @@ $(document).ready(function() {
         if (searchBData.length !== 0) {
             apiSearch(searchBData,searchMovie,'.movies');
             apiSearch(searchBData,searchTv,'.tv-shows');
-
         } else {
             alert('Inserisci qualcosa');
         };
