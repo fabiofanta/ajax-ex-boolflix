@@ -25,11 +25,13 @@
                 <nav></nav>
                 <div class="card-container">
                 </div>
+                <div class="card-container2">
+                </div>
             </div>
         </div>
 
         <script id="card-template" type="text/x-handlebars-template">
-            <div class="card">
+            <div class="card" data-id={{id}}>
                 <img src="{{poster}}"  alt="{{title}}">
                 <div class="card-description">
                     <p>Titolo: {{title}}</p>
@@ -44,6 +46,7 @@
                         <i class="far fa-star"></i>
                     </div>
                     <p class="over">Overview: {{description}}</p>
+
                 </div>
             </div>
         </script>

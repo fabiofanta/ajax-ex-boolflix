@@ -7,7 +7,7 @@ $(document).ready(function() {
 
     var apiBaseUrl = 'https://api.themoviedb.org/3';
     var querySearch = 'search'
-    var movie = 'movie';
+    var searchMovie = 'movie';
     var searchTv = 'tv';
     var apiPoster = 'https://image.tmdb.org/t/p/';
     var posterWidth = 'w342';
@@ -23,8 +23,8 @@ $(document).ready(function() {
         $('.card').remove(); // reset search
         var searchBData = $('#input-bar').val();
         if (searchBData.length !== 0) {
-            apiSearch(searchBData,querySearch,movie);
-            apiSearch(searchBData,querySearch,searchTv);
+            apiSearch(searchBData,querySearch,searchMovie,'.card-container');
+            apiSearch(searchBData,querySearch,searchTv,'.card-container2');
 
         } else {
             alert('Inserisci qualcosa');
@@ -32,29 +32,76 @@ $(document).ready(function() {
 
     };
 
-    function apiSearch(queryText,queryCat,queryType) {
+    function apiSearch(queryText,queryCat,queryType,position) {
         $.ajax({
             url: apiBaseUrl + '/' + queryCat + '/' + queryType,
             data: {
                 api_key: '0e9052ad7b0a0c76eb018c431e65c6ce',
                 query: queryText,
                 language: 'it-IT',
-                // append_to_response: 'credit,genres',
+                append_to_response: 'credit',
             },
             method:'GET',
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 var videos = data.results;
                 // console.log(videos);
-                loop(videos,queryType);
+                loop(videos,queryType,position);
                 starsFill();
+                test(queryType,position);
             },
             error: function(err) {
                 alert('Error!');
             }
 
         });
-    }
+    };
+
+    function cast5(array) {
+        if (array.length <= 5) {
+            var arrLength = array.length;
+        } else {
+            var arrLength = 5;
+        };
+        var cast = [];
+        for (var i = 0; i < arrLength; i++) {
+             var actor = array[i].name;
+             cast.push(actor);
+    };
+    return cast.join()
+};
+
+    function test(queryType,position) {
+        $(position  + ' .card').each(function() {
+            var id = $(this).data('id');
+            console.log(id);
+            var self = this;
+            apiTvMovie(queryType,id,self);
+
+        });
+    };
+
+    function apiTvMovie(queryType,id,position) {
+        $.ajax({
+            url: apiBaseUrl + '/' + queryType + '/' + id + '?',
+            data: {
+                api_key: '0e9052ad7b0a0c76eb018c431e65c6ce',
+                append_to_response: 'credits',
+            },
+            method:'GET',
+            success: function(data) {
+                var cast = data.credits.cast;
+                console.log(cast);
+                var ciao = cast5(cast);
+                console.log(ciao);
+                $(position).find('.card-description').append(ciao);
+            },
+            error: function(err) {
+                alert('Error!');
+            }
+
+        });
+    };
 
     function appendFn(context,appendSel) {
         var filledTemplate = cardTemplate(context);
@@ -68,15 +115,15 @@ $(document).ready(function() {
         };
     };
 
-    function loop(arrays,queryType) {
+    function loop(arrays,queryType,position) {
         for (var i = 0; i < arrays.length; i++) {
             var array = arrays[i];
             // console.log(array);
             var vote = roundVote(array.vote_average);
             var languageEng = language(array.original_language);
-            var object = {title:array.title, originTitle: array.original_title,language:languageEng,vote:vote,poster:posterPath(array.poster_path),description:array.overview};
+            var object = {title:array.title, originTitle: array.original_title,language:languageEng,vote:vote,poster:posterPath(array.poster_path),description:array.overview,id:array.id};
             obNChanger(queryType,object,array);
-            appendFn(object,'.card-container');
+            appendFn(object,position);
         };
 
     };
