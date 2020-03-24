@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+      background-color: black;
+  }
+
+
+  .container-fullwidth {
+      min-height: 100%;
+  }
+
+  .container {
+      width: 85%;
+      min-height: 100vh;
+      margin: auto;
+  }
+
+  header {
+      height: 80px;
+  }
+
+  .header-container {
+       width: 85%;
+       height: 100%;
+       margin: auto;
+  }
+
+  .logo {
+      background-image: url('../img/Boolflix-logo.png');
+      height: 100%;
+      display: inline-block;
+      width: 150px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .search-bar{
+      float: right;
+      line-height: 5;
+  }
+
+  .card-container {
+      width: 800px;
+      margin: 20px auto;
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  .card {
+      width: 200px;
+      height: 300px;
+      position: relative;
+      background-color: white;
+  }
+
+  .card:hover .card-description {
+      display: block;
+  }
+
+  .card img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      font-size: 16px;
+  }
+
+  .card-description {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+      color: white;
+      background-color: black;
+      padding: 20px;
+      padding-bottom: 60px;
+      border: 1px solid white;
+      display: none;
+  }
+
+  .card-description img {
+      width: 16px;
+      height: 16px;
+  }
+
+  .stars {
+      display: flex;
+  }
+
+  .stars-yellow {
+      color: yellow;
+  }
+
+  .show {
+      display: block;
+  }

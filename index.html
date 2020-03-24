@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/931ad4d9a2.js" crossorigin="anonymous"></script>
+        <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" charset="utf-8"></script>
+        <script src="js/main.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <div class="container-fullwidth">
+            <header>
+                <div class="header-container">
+                    <div class="logo"></div>
+                    <div class="search-bar">
+                        <input id="input-bar"type="" value="">
+                        <button id="input-button"type="button" name="button">Cerca</button>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                <nav></nav>
+                <div class="card-container">
+                </div>
+            </div>
+        </div>
+
+        <script id="card-template" type="text/x-handlebars-template">
+            <div class="card">
+                <img src="{{poster}}"  alt="{{title}}">
+                <div class="card-description">
+                    <p>Titolo: {{title}}</p>
+                    <p>Titolo originale: {{originTitle}}</p>
+                    <img src="https://www.countryflags.io/{{language}}/shiny/16.png" alt="{{language}}">
+                    <div class="stars" data-vote={{vote}}>
+                        Voto:&nbsp
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="over">Overview: {{description}}</p>
+                </div>
+            </div>
+        </script>
+
+
+    </body>
+</html>
