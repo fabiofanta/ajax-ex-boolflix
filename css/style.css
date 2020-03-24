@@ -75,7 +75,6 @@
       left: 0;
       height: 100%;
       width: 100%;
-      overflow-y:auto;
       color: white;
       background-color: black;
       padding: 20px;
@@ -99,4 +98,9 @@
 
   .show {
       display: block;
+  }
+
+  .over {
+        overflow-y:auto;
+        max-height: 50%;
   }

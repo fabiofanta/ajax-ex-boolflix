@@ -23,9 +23,7 @@ $(document).ready(function() {
         var searchBData = $('#input-bar').val();
         if (searchBData.length !== 0) {
             apiSearch(searchBData,movie);
-            setTimeout(function () {
-                apiSearch(searchBData,searchTv);
-            }, 200);
+            apiSearch(searchBData,searchTv);
 
         } else {
             alert('Inserisci qualcosa');
