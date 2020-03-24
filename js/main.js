@@ -38,6 +38,7 @@ $(document).ready(function() {
                 api_key: '0e9052ad7b0a0c76eb018c431e65c6ce',
                 query: queryText,
                 language: 'it-IT',
+                // append_to_response: 'credit,genres',
             },
             method:'GET',
             success: function(data) {
