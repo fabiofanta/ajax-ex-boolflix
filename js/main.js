@@ -6,6 +6,7 @@ $(document).ready(function() {
     //end handlebars
 
     var apiBaseUrl = 'https://api.themoviedb.org/3';
+    var querySearch = 'search'
     var movie = 'movie';
     var searchTv = 'tv';
     var apiPoster = 'https://image.tmdb.org/t/p/';
@@ -22,8 +23,8 @@ $(document).ready(function() {
         $('.card').remove(); // reset search
         var searchBData = $('#input-bar').val();
         if (searchBData.length !== 0) {
-            apiSearch(searchBData,movie);
-            apiSearch(searchBData,searchTv);
+            apiSearch(searchBData,querySearch,movie);
+            apiSearch(searchBData,querySearch,searchTv);
 
         } else {
             alert('Inserisci qualcosa');
@@ -31,9 +32,9 @@ $(document).ready(function() {
 
     };
 
-    function apiSearch(queryText,queryType) {
+    function apiSearch(queryText,queryCat,queryType) {
         $.ajax({
-            url: apiBaseUrl + '/search/' + queryType,
+            url: apiBaseUrl + '/' + queryCat + '/' + queryType,
             data: {
                 api_key: '0e9052ad7b0a0c76eb018c431e65c6ce',
                 query: queryText,
