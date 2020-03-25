@@ -28,6 +28,10 @@
                 <div class="card-container tv-shows">
                 </div>
             </div>
+            <select class="genre-selector">
+                <option value="" disabled selected>Scegli il tuo genere</option>
+                <option value="All">All</option>
+            </select>
         </div>
 
         <script id="card-template" type="text/x-handlebars-template">
@@ -46,9 +50,12 @@
                         <i class="far fa-star"></i>
                     </div>
                     <p class="over">Overview: {{description}}</p>
-
                 </div>
             </div>
+
+        </script>
+        <script id="filter-template" type="text/x-handlebars-template">
+            <option value="{{genre}}">{{genre}}</option>
         </script>
 
 

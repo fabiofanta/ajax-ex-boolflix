@@ -1,8 +1,11 @@
 $(document).ready(function() {
 
-    //handlebars template
+    //handlebars card template
     var source = $("#card-template").html();
     var cardTemplate = Handlebars.compile(source);
+    // handlebars filter template
+    var src = $("#filter-template").html();
+    var filterTemplate = Handlebars.compile(src);
     //end handlebars
 
     var apiBaseUrl = 'https://api.themoviedb.org/3';
@@ -45,6 +48,7 @@ $(document).ready(function() {
                 var videos = data.results;
                 appendCard(videos,queryType,position);
                 appendDetails(queryType,position);
+                apiFilter(queryType,'.genre-selector')
                 starsFill();
             },
             error: function(err) {
@@ -104,11 +108,6 @@ $(document).ready(function() {
         });
     };
 
-    function appendFn(context,appendSel) {
-        var filledTemplate = cardTemplate(context);
-        $(appendSel).append(filledTemplate);
-    };
-
     function obNChanger(qryType,obj,arr) {
         if (qryType == 'tv') {
             obj.title = arr.name;
@@ -124,7 +123,39 @@ $(document).ready(function() {
             var languageEng = language(array.original_language);
             var object = {title:array.title, originTitle: array.original_title,language:languageEng,vote:vote,poster:posterPath(array.poster_path),description:array.overview,id:array.id,genreId:array.genre_ids};
             obNChanger(queryType,object,array);
-            appendFn(object,position);
+            var filledTemplate = cardTemplate(object);
+            $(position).append(filledTemplate);
+        };
+
+    };
+
+    function apiFilter(qryTyp,position) {
+        $.ajax({
+            url: apiBaseUrl + '/genre/' + qryTyp + '/' + 'list',
+            data: {
+                api_key: '0e9052ad7b0a0c76eb018c431e65c6ce',
+            },
+            method:'GET',
+            success: function(data) {
+                console.log(data);
+                var genres = data.genres;
+                console.log(genres);
+                appendFilters(genres,qryTyp,position);
+            },
+            error: function(err) {
+                alert('Error!');
+            }
+
+        });
+    };
+
+    function appendFilters(arrays,queryType,position) {
+        for (var i = 0; i < arrays.length; i++) {
+            var array = arrays[i];
+            // console.log(array);
+            var object = {genre:array.name};
+            var filledTemplate = filterTemplate(object);
+            $(position).append(filledTemplate);
         };
 
     };
