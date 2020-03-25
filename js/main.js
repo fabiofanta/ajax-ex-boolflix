@@ -8,6 +8,7 @@ $(document).ready(function() {
     var filterTemplate = Handlebars.compile(src);
     //end handlebars
 
+    var fakeArray = [-1];
     var apiBaseUrl = 'https://api.themoviedb.org/3';
     var searchMovie = 'movie';
     var searchTv = 'tv';
@@ -155,9 +156,14 @@ $(document).ready(function() {
         for (var i = 0; i < arrays.length; i++) {
             var array = arrays[i];
             // console.log(array);
+
             var object = {genre:array.name,genreId:array.id};
             var filledTemplate = filterTemplate(object);
-            $(position).append(filledTemplate);
+            if (!fakeArray.includes(array.id)) {
+                fakeArray.push(array.id);
+                $(position).append(filledTemplate);
+            };
+
         };
 
     };
@@ -216,4 +222,13 @@ $(document).ready(function() {
             };
         });
     };
+
+    function removeFilterDuplicates() {
+        $('.genre-selector option').each(function() {
+            console.log($('.genre-selector option').siblings().data('genre'));
+            if ($('.genre-selector option').siblings().data('genre') == $('.genre-selector option').data('genre')) {
+                $(this).remove();
+            }
+        })
+    }
 });
