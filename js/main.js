@@ -63,12 +63,12 @@ $(document).ready(function() {
     };
 
     function stringJoin(array,arrLength) {
-        var cast = [];
+        var fakeArray = [];
         for (var i = 0; i < arrLength; i++) {
-             var actor = array[i].name;
-             cast.push(actor);
+             var string = array[i].name;
+             fakeArray.push(string);
     };
-    return cast.join()
+    return fakeArray.join()
 };
 
     function appendDetails(queryType,position) {
