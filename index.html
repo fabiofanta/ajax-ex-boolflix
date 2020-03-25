@@ -23,15 +23,15 @@
             </header>
             <div class="container">
                 <nav></nav>
+                <select class="genre-selector">
+                    <option value="" disabled selected>Scegli il tuo genere</option>
+                    <option value="All">All</option>
+                </select>
                 <div class="card-container movies">
                 </div>
                 <div class="card-container tv-shows">
                 </div>
             </div>
-            <select class="genre-selector">
-                <option value="" disabled selected>Scegli il tuo genere</option>
-                <option value="All">All</option>
-            </select>
         </div>
 
         <script id="card-template" type="text/x-handlebars-template">
@@ -55,7 +55,7 @@
 
         </script>
         <script id="filter-template" type="text/x-handlebars-template">
-            <option value="{{genre}}">{{genre}}</option>
+            <option data-genre= {{genreId}} value="{{genre}}">{{genre}}</option>
         </script>
 
 

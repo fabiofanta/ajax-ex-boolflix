@@ -21,6 +21,8 @@ $(document).ready(function() {
         };
     });
 
+    selector();
+
     function search() {
         $('.card').remove(); // reset search
         var searchBData = $('#input-bar').val();
@@ -153,7 +155,7 @@ $(document).ready(function() {
         for (var i = 0; i < arrays.length; i++) {
             var array = arrays[i];
             // console.log(array);
-            var object = {genre:array.name};
+            var object = {genre:array.name,genreId:array.id};
             var filledTemplate = filterTemplate(object);
             $(position).append(filledTemplate);
         };
@@ -183,10 +185,35 @@ $(document).ready(function() {
     function posterPath (path) {
         if (path !== null) {
             return apiPoster + posterWidth + path;
-        }
-         else {
+        } else {
             return "img/glyphicon-film-poster.png"
-        }
-    }
+        };
+    };
 
+    function selector() {
+        $('.genre-selector').change(function() {
+            var genreSel = $(this).val().toLowerCase();
+            if (genreSel == "" || genreSel == "all") {
+                $('.card').removeClass('hide');
+                $('.card').addClass('show');
+            } else {
+                $('option').each(function() {
+                    var genre = $(this).text().toLowerCase();
+                    if (genre == genreSel ) {
+                        var genreId = $(this).data('genre');
+                        $('.card').each(function() {
+                            var genreList = '['+ $(this).data('genre') + ']';
+                            if (genreList.includes(genreId)) {
+                                $(this).removeClass('hide');
+                                $(this).addClass('show');
+                            } else {
+                                $(this).removeClass('show');
+                                $(this).addClass('hide');
+                            };
+                        });
+                    };
+                });
+            };
+        });
+    };
 });

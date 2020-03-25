@@ -96,7 +96,11 @@
   }
 
   .show {
-      display: block;
+      display: flex;
+  }
+
+  .hide {
+      display: none;
   }
 
   .over {
