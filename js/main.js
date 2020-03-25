@@ -222,13 +222,4 @@ $(document).ready(function() {
             };
         });
     };
-
-    function removeFilterDuplicates() {
-        $('.genre-selector option').each(function() {
-            console.log($('.genre-selector option').siblings().data('genre'));
-            if ($('.genre-selector option').siblings().data('genre') == $('.genre-selector option').data('genre')) {
-                $(this).remove();
-            }
-        })
-    }
 });
