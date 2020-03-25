@@ -41,6 +41,7 @@ $(document).ready(function() {
             },
             method:'GET',
             success: function(data) {
+                console.log(data);
                 var videos = data.results;
                 appendCard(videos,queryType,position);
                 appendDetails(queryType,position);
@@ -121,7 +122,7 @@ $(document).ready(function() {
             // console.log(array);
             var vote = roundVote(array.vote_average);
             var languageEng = language(array.original_language);
-            var object = {title:array.title, originTitle: array.original_title,language:languageEng,vote:vote,poster:posterPath(array.poster_path),description:array.overview,id:array.id};
+            var object = {title:array.title, originTitle: array.original_title,language:languageEng,vote:vote,poster:posterPath(array.poster_path),description:array.overview,id:array.id,genreId:array.genre_ids};
             obNChanger(queryType,object,array);
             appendFn(object,position);
         };
