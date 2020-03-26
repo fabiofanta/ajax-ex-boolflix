@@ -51,7 +51,7 @@ $(document).ready(function() {
                 var videos = data.results;
                 appendCard(videos,queryType,position);
                 appendDetails(queryType,position);
-                apiFilter(queryType,'.genre-selector')
+                apiFilter(queryType,'.genre-selector');
                 starsFill();
             },
             error: function(err) {
@@ -83,7 +83,6 @@ $(document).ready(function() {
         $(position  + ' .card').each(function() {
             var id = $(this).data('id');
             apiTvMovie(queryType,id,this);
-
         });
     };
 
@@ -151,21 +150,7 @@ $(document).ready(function() {
 
         });
     };
-
-    function appendFilters(arrays,queryType,position) {
-        for (var i = 0; i < arrays.length; i++) {
-            var array = arrays[i];
-            // console.log(array);
-
-            var object = {genre:array.name,genreId:array.id};
-            var filledTemplate = filterTemplate(object);
-            if (!fakeArray.includes(array.id)) {
-                fakeArray.push(array.id);
-                $(position).append(filledTemplate);
-            };
-
         };
-
     };
 
     function language(string) {
