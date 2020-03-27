@@ -22,26 +22,25 @@
                 </div>
             </header>
             <div class="container">
-                <nav></nav>
                 <select class="genre-selector">
                     <option value="" disabled selected>Scegli il tuo genere</option>
                     <option value="All">All</option>
                 </select>
-                <div class="card-container movies">
+                <div class="card-container movie">
                 </div>
-                <div class="card-container tv-shows">
+                <div class="card-container tv">
                 </div>
             </div>
         </div>
 
         <script id="card-template" type="text/x-handlebars-template">
-            <div class="card" data-id={{id}} data-genre= {{genreId}}>
+            <div class="card" data-id="{{id}}" data-genre= "{{genreId}}">
                 <img src="{{poster}}"  alt="{{title}}">
                 <div class="card-description">
                     <p>Titolo: {{title}}</p>
                     <p>Titolo originale: {{originTitle}}</p>
                     <img src="https://www.countryflags.io/{{language}}/shiny/16.png" alt="{{language}}">
-                    <div class="stars" data-vote={{vote}}>
+                    <div class="stars" data-vote="{{vote}}">
                         Voto:&nbsp
                         <i class="far fa-star"></i>
                         <i class="far fa-star"></i>
@@ -55,7 +54,7 @@
 
         </script>
         <script id="filter-template" type="text/x-handlebars-template">
-            <option data-genre= {{genreId}} value="{{genre}}">{{genre}}</option>
+            <option data-genre= "{{genreId}}" data-content= "{{genre}}{{seriesOrMovies}}" value="{{genre}}^{{seriesOrMovies}}">{{genre}}</option>
         </script>
 
 
