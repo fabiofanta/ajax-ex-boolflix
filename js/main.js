@@ -36,7 +36,7 @@ $(document).ready(function() {
 
     };
 
-    function apiSearch(queryText,queryType,position) {
+    function apiSearch(queryText,queryType) {
         $.ajax({
             url: apiBaseUrl + '/search/' + queryType,
             data: {
@@ -49,9 +49,11 @@ $(document).ready(function() {
             success: function(data) {
                 console.log(data);
                 var videos = data.results;
-                appendCard(videos,queryType,position);
-                appendDetails(queryType,position);
-                apiFilter(queryType,'.genre-selector');
+                var cardPosition = '.card-container'+ '.' + queryType
+                appendCard(videos,queryType,cardPosition);
+                appendDetails(queryType,cardPosition);
+                var filterPosition = '.genre-selector'+ '.' + queryType;
+                apiFilter(queryType,filterPosition);
                 starsFill();
             },
             error: function(err) {
@@ -131,14 +133,6 @@ $(document).ready(function() {
 
     };
 
-    function filterSplit(qt,pos) {
-        if (qt == searchTv) {
-            $(pos).append('<option  disabled > Tv Series Only </option>');
-        } else {
-            $(pos).append('<option  disabled > Movies Only </option>');
-        };
-    }
-
     function apiFilter(qryTyp,position) {
         $.ajax({
             url: apiBaseUrl + '/genre/' + qryTyp + '/' + 'list',
@@ -150,7 +144,6 @@ $(document).ready(function() {
                 console.log(data);
                 var genres = data.genres;
                 console.log(genres);
-                filterSplit(qryTyp,position);
                 appendFilters(genres,qryTyp,position);
             },
             error: function(err) {
@@ -214,9 +207,7 @@ $(document).ready(function() {
     function selector() {
         $('.genre-selector').change(function() {
             var genreSel = $(this).val().toLowerCase();
-            console.log(genreSel);
             var contentLink = stringAfter(genreSel,'^');
-            console.log(contentLink);
             if (genreSel == "" || genreSel == "all") {
                 $('.card').removeClass('hide');
                 $('.card').addClass('show');
@@ -226,13 +217,10 @@ $(document).ready(function() {
                     // console.log(genre);
                     if (genre == genreSel) {
                         var genreId = $(this).data('genre');
-                        console.log(genreId);
                         $('.card').removeClass('show');
                         $('.card').addClass('hide');
-                        $('.' + contentLink + ' .card').each(function() {
-                            console.log($('.movie .card'));
+                        $('.card-container ' + '.' + contentLink + ' .card').each(function() {
                             var genreList = '['+ $(this).data('genre') + ']';
-                            console.log(genreList);
                             if (genreList.includes(genreId)) {
                                 $(this).removeClass('hide');
                                 $(this).addClass('show');
