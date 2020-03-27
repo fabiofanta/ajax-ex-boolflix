@@ -201,9 +201,9 @@ $(document).ready(function() {
         };
     };
 
-    function concStartFrom(array,from) {
+    function stringAfter(array,afterCharacter) {
         var concat = '';
-        var separatorArrIndex = array.indexOf(from);
+        var separatorArrIndex = array.indexOf(afterCharacter);
         for (var i = (separatorArrIndex + 1); i < array.length; i++) {
             var concat = concat + array[i];
             };
@@ -215,7 +215,7 @@ $(document).ready(function() {
         $('.genre-selector').change(function() {
             var genreSel = $(this).val().toLowerCase();
             console.log(genreSel);
-            var contentLink = concStartFrom(genreSel,'^');
+            var contentLink = stringAfter(genreSel,'^');
             console.log(contentLink);
             if (genreSel == "" || genreSel == "all") {
                 $('.card').removeClass('hide');
