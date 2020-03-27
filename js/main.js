@@ -156,7 +156,7 @@ $(document).ready(function() {
     function appendFilters(arrays,queryType,position) {
         for (var i = 0; i < arrays.length; i++) {
             var array = arrays[i];
-            var object = {genre:array.name,genreId:array.id,seriesOrMovies:queryType};
+            var object = {genre:array.name,genreId:array.id};
             var filledTemplate = filterTemplate(object);
             $(position).append(filledTemplate);
             // if (!fakeArray.includes(array.id)) {
@@ -194,41 +194,29 @@ $(document).ready(function() {
         };
     };
 
-    function stringAfter(array,afterCharacter) {
-        var concat = '';
-        var separatorArrIndex = array.indexOf(afterCharacter);
-        for (var i = (separatorArrIndex + 1); i < array.length; i++) {
-            var concat = concat + array[i];
-            };
-            return concat;
-        };
-
-
     function selector() {
         $('.genre-selector').change(function() {
             var genreSel = $(this).val().toLowerCase();
-            var contentLink = stringAfter(genreSel,'^');
+            var contentLink = $(this).attr('class').split(' ')[1];
+            var cardPosition = '.card-container' + '.' + contentLink + ' .card';
+            var optionPosition = '.genre-selector' + '.' + contentLink + ' option'
             if (genreSel == "" || genreSel == "all") {
-                $('.card').removeClass('hide');
-                $('.card').addClass('show');
+                $('cardPosition').removeClass('hide');
+                $(cardPosition).addClass('show');
             } else {
-                $('option').each(function() {
+                $(optionPosition).each(function() {
                     var genre = $(this).val().toLowerCase();
-                    // console.log(genre);
                     if (genre == genreSel) {
                         var genreId = $(this).data('genre');
-                        $('.card').removeClass('show');
-                        $('.card').addClass('hide');
-                        $('.card-container ' + '.' + contentLink + ' .card').each(function() {
+                        $(cardPosition).each(function() {
                             var genreList = '['+ $(this).data('genre') + ']';
                             if (genreList.includes(genreId)) {
                                 $(this).removeClass('hide');
                                 $(this).addClass('show');
+                            } else {
+                                $(this).removeClass('show');
+                                $(this).addClass('hide');
                             };
-                            // } else {
-                            //     $('.tv .card').removeClass('show');
-                            //     $('.tv .card').addClass('hide');
-                            // };
                         });
                     };
                 });
