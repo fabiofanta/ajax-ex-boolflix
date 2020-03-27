@@ -201,7 +201,7 @@ $(document).ready(function() {
             var cardPosition = '.card-container' + '.' + contentLink + ' .card';
             var optionPosition = '.genre-selector' + '.' + contentLink + ' option'
             if (genreSel == "" || genreSel == "all") {
-                $('cardPosition').removeClass('hide');
+                $(cardPosition).removeClass('hide');
                 $(cardPosition).addClass('show');
             } else {
                 $(optionPosition).each(function() {
