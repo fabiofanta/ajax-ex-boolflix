@@ -150,6 +150,16 @@ $(document).ready(function() {
 
         });
     };
+
+    function appendFilters(arrays,queryType,position) {
+        for (var i = 0; i < arrays.length; i++) {
+            var array = arrays[i];
+            var object = {genre:array.name,genreId:array.id};
+            var filledTemplate = filterTemplate(object);
+            if (!fakeArray.includes(array.id)) {
+                fakeArray.push(array.id);
+                $(position).append(filledTemplate);
+            };
         };
     };
 
