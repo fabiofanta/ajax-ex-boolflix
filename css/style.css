@@ -150,15 +150,26 @@
       color: yellow;
   }
 
+  .over {
+    font-size:14px;
+  }
+
+  .card span {
+      font-weight: bold;
+      font-size: 16px;
+  }
+
   .cast,.genre {
       text-transform: capitalize;
+      font-weight: bold;
   }
 
   .cast span,.genre span {
       background-color: #cf1717;
       border-radius: 5px;
       padding: 0 5px;
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: normal;
       cursor: pointer;
   }
 
