@@ -76,6 +76,8 @@
       margin: 20px auto;
       display: flex;
       flex-wrap: wrap;
+      float: none;
+      clear: both;
   }
 
   .overlay {
@@ -92,6 +94,7 @@
   .category-name {
       font-size: 30px;
       height: 40px;
+      width: 100%;
       color: white;
       margin-top: 40px;
       position: sticky;
@@ -105,8 +108,10 @@
     color: white;
   }
 
-  .genre-selector {
+  .selector-container {
       float: right;
+      position: sticky;
+      top: 80px;
   }
 
   .card {
