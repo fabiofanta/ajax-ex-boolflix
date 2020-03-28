@@ -46,21 +46,23 @@
             <div class="card" data-id="{{id}}" data-genre= "{{genreId}}">
                 <img src="{{poster}}"  alt="{{title}}">
                 <div class="card-description">
-                    <p><span>Titolo:</span> {{title}}</p>
-                    <p><span>Titolo originale:</span> {{originTitle}}</p>
+                    <div><span class="highlight">Titolo:</span> <span>{{title}}</span></div>
+                    <div><span class="highlight">Titolo originale:</span> <span>{{originTitle}}</span></div>
                     <div class="language">
-                        <span>Lingua:&nbsp </span>
+                        <span class="highlight">Lingua:&nbsp </span>
                         <img src="https://www.countryflags.io/{{language}}/shiny/16.png" alt="{{language}}">
                     </div>
                     <div class="stars" data-vote="{{vote}}">
-                        <span>Voto:&nbsp</span>
+                        <span class="highlight">Voto:&nbsp</span>
                         <i class="far fa-star"></i>
                         <i class="far fa-star"></i>
                         <i class="far fa-star"></i>
                         <i class="far fa-star"></i>
                         <i class="far fa-star"></i>
                     </div>
-                    <p class="over"><span>Overview:</span> {{description}}</p>
+                    <div><span class="highlight">Overview:</span><span class="over">{{description}}</span></div>
+                    <div class="cast-container"></div>
+                    <div class="genre-container"></div>
                 </div>
             </div>
 

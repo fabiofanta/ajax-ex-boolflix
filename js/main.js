@@ -36,6 +36,14 @@ $(document).ready(function() {
 
     };
 
+    function checkIfExist() {
+        var text = $('.card-description p').text();
+        console.log(text);
+        // if (text=="") {
+        //
+        // }
+    }
+
     function apiSearch(queryText,queryType) {
         $.ajax({
             url: apiBaseUrl + '/search/' + queryType,
@@ -53,6 +61,7 @@ $(document).ready(function() {
                 var filterPosition = '.genre-selector'+ '.' + queryType;
                 appendCard(videos,queryType,cardPosition);
                 appendDetails(queryType,cardPosition);
+                checkIfExist();
                 apiFilter(queryType,filterPosition);
                 starsFill();
             },
@@ -73,12 +82,12 @@ $(document).ready(function() {
     };
 
     function stringJoin(array,arrLength,position,elementName) {
-        var appendPosition = '<p class="'+ elementName +'">'+ elementName +':</p>'
-        $(position).find('.card-description').append(appendPosition);
+        var appendPosition = '<span class="highlight">'+ elementName +':</span>'
+        $(position).find('.card-description .'+ elementName +'-container').append(appendPosition);
         var fakeArray = [];
         for (var i = 0; i < arrLength; i++) {
              var string = array[i].name;
-             $(position).find('.' + elementName + '').append(' <span>'+ string +'</span> ');
+             $(position).find('.card-description .'+ elementName +'-container').append(' <span class="' + elementName + '">'+ string +'</span> ');
     };
 };
 
@@ -117,6 +126,7 @@ $(document).ready(function() {
             obj.originTitle = arr.original_name;
         };
     };
+
 
     function appendCard(arrays,queryType,position) {
         for (var i = 0; i < arrays.length; i++) {

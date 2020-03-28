@@ -135,7 +135,7 @@
       display: none;
   }
 
-  .card-description > div, .card-description > p {
+  .card-description > div {
       line-height: 1.2;
       margin-bottom: 10px;
   }
@@ -159,21 +159,16 @@
       color: yellow;
   }
 
+  .highlight {
+      font-weight: bold;
+      text-transform: capitalize;
+  }
+
   .over {
     font-size:14px;
   }
 
-  .card span {
-      font-weight: bold;
-      font-size: 16px;
-  }
-
   .cast,.genre {
-      text-transform: capitalize;
-      font-weight: bold;
-  }
-
-  .cast span,.genre span {
       background-color: #cf1717;
       border-radius: 5px;
       padding: 0 5px;
@@ -182,7 +177,7 @@
       cursor: pointer;
   }
 
-  .cast span:nth-last-child(n+2)::after, .genre span:nth-last-child(n+2)::after {
+  .cast:nth-last-child(n+2)::after, .genre:nth-last-child(n+2)::after {
       content: ',';
       position: relative;
       left: 8px;
