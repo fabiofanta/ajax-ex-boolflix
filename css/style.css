@@ -126,13 +126,24 @@
       display: none;
   }
 
+  .card-description > div, .card-description > p {
+      line-height: 1.2;
+      margin-bottom: 10px;
+  }
+
   .card-description img {
       width: 16px;
       height: 16px;
   }
 
+  .language {
+      display: flex;
+      align-items: center;
+  }
+
   .stars {
       display: flex;
+
   }
 
   .stars-yellow {
