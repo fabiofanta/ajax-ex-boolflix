@@ -46,8 +46,8 @@
             <div class="card" data-id="{{id}}" data-genre= "{{genreId}}">
                 <img src="{{poster}}"  alt="{{title}}">
                 <div class="card-description">
-                    <div><span class="highlight">Titolo:</span> <span>{{title}}</span></div>
-                    <div><span class="highlight">Titolo originale:</span> <span>{{originTitle}}</span></div>
+                    <div><span class="highlight">Titolo:</span> <span class="api-value">{{title}}</span></div>
+                    <div><span class="highlight">Titolo originale:</span> <span class="api-value">{{originTitle}}</span></div>
                     <div class="language">
                         <span class="highlight">Lingua:&nbsp </span>
                         <img src="https://www.countryflags.io/{{language}}/shiny/16.png" alt="{{language}}">
@@ -60,9 +60,11 @@
                         <i class="far fa-star"></i>
                         <i class="far fa-star"></i>
                     </div>
-                    <div><span class="highlight">Overview:</span><span class="over">{{description}}</span></div>
-                    <div class="cast-container"></div>
-                    <div class="genre-container"></div>
+                    <div><span class="highlight">Overview:</span><span class="over api-value">{{description}}</span></div>
+                    <div class="cast-container">
+                    </div>
+                    <div class="genre-container">
+                    </div>
                 </div>
             </div>
 

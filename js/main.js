@@ -37,12 +37,13 @@ $(document).ready(function() {
     };
 
     function checkIfExist() {
-        var text = $('.card-description p').text();
-        console.log(text);
-        // if (text=="") {
-        //
-        // }
-    }
+        $('.card-description .api-value').each(function() {
+            var text = $(this).text();
+            if (text == "") {
+                $(this).parent().addClass('hide');
+            };
+        })
+    };
 
     function apiSearch(queryText,queryType) {
         $.ajax({
@@ -61,7 +62,6 @@ $(document).ready(function() {
                 var filterPosition = '.genre-selector'+ '.' + queryType;
                 appendCard(videos,queryType,cardPosition);
                 appendDetails(queryType,cardPosition);
-                checkIfExist();
                 apiFilter(queryType,filterPosition);
                 starsFill();
             },
@@ -84,12 +84,16 @@ $(document).ready(function() {
     function stringJoin(array,arrLength,position,elementName) {
         var appendPosition = '<span class="highlight">'+ elementName +':</span>'
         $(position).find('.card-description .'+ elementName +'-container').append(appendPosition);
-        var fakeArray = [];
-        for (var i = 0; i < arrLength; i++) {
-             var string = array[i].name;
-             $(position).find('.card-description .'+ elementName +'-container').append(' <span class="' + elementName + '">'+ string +'</span> ');
+        if (array.length == 0) {
+            var string = "";
+            $(position).find('.card-description .'+ elementName +'-container').append(' <span class="' + elementName + ' api-value">'+ string +'</span> ');
+        } else {
+            for (var i = 0; i < arrLength; i++) {
+                var string = array[i].name;
+                $(position).find('.card-description .'+ elementName +'-container').append(' <span class="' + elementName + ' api-value">'+ string +'</span> ');
+            };
+        };
     };
-};
 
     function appendDetails(queryType,position) {
         $(position  + ' .card').each(function() {
@@ -107,11 +111,13 @@ $(document).ready(function() {
             },
             method:'GET',
             success: function(data) {
-                var cast = data.credits.cast;
+                var cast = data.credits.cast
+                console.log(cast);
                 var genres = data.genres;
                 var arrLen = arrLenCheck(cast);
                 stringJoin(cast,arrLen,position,"cast");
                 stringJoin(genres,genres.length,position,"genre");
+                checkIfExist();
             },
             error: function(err) {
                 alert('Error!');
