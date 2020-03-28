@@ -72,13 +72,17 @@ $(document).ready(function() {
         return arrLength
     };
 
-    function stringJoin(array,arrLength) {
+    function stringJoin(array,arrLength,position,test) {
+        var appendPosition = '<p class="'+ test +'">'+ test +':</p>'
+        console.log(appendPosition);
+        $(position).find('.card-description').append(appendPosition);
         var fakeArray = [];
         for (var i = 0; i < arrLength; i++) {
              var string = array[i].name;
-             fakeArray.push(string);
+             $(position).find('.' + test + '').append(' <span>'+ string +'</span> ');
+             // fakeArray.push(string);
     };
-    return fakeArray.join()
+    // return fakeArray.join()
 };
 
     function appendDetails(queryType,position) {
@@ -100,10 +104,10 @@ $(document).ready(function() {
                 var cast = data.credits.cast;
                 var genres = data.genres;
                 var arrLen = arrLenCheck(cast);
-                var castString = stringJoin(cast,arrLen);
-                var genresString = stringJoin(genres,genres.length);
-                $(position).find('.card-description').append(castString);
-                $(position).find('.card-description').append(genresString);
+                var castString = stringJoin(cast,arrLen,position,"cast");
+                var genresString = stringJoin(genres,genres.length,position,"genre");
+                // $(position).find('.card-description').append('<p class:"cast">Cast: <span>'+ castString +'</span></p>');
+                // $(position).find('.card-description').append('<p class:"genres">Genre: ' + genresString + '</p>');
             },
             error: function(err) {
                 alert('Error!');

@@ -150,14 +150,29 @@
       color: yellow;
   }
 
+  .cast,.genre {
+      text-transform: capitalize;
+  }
+
+  .cast span,.genre span {
+      background-color: #cf1717;
+      border-radius: 5px;
+      padding: 0 5px;
+      font-size: 13px;
+      cursor: pointer;
+  }
+
+  .cast span:nth-last-child(n+2)::after, .genre span:nth-last-child(n+2)::after {
+      content: ',';
+      position: relative;
+      left: 8px;
+  }
+
+
   .show {
       display: flex;
   }
 
   .hide {
       display: none;
-  }
-
-  .over {
-        max-height: 50%;
   }
