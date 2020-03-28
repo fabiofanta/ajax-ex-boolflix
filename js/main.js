@@ -37,10 +37,16 @@ $(document).ready(function() {
     };
 
     function checkIfExist(position) {
+        var originalTitle = $(position).find('.card-description #main-title ').text();
+        console.log(originalTitle);
+        var title = $(position).find('.card-description #title').text();
+        console.log(title);
+        if (originalTitle == title) {
+            $(position).find('.original-title-container').addClass('hide');
+        };
         $(position).find('.card-description .api-value').each(function() {
             var text = $(this).text();
             console.log(text);
-            var title = $(this).parent('.card-description').find('#main-title').text();
             if (text == "") {
                 $(this).parent().addClass('hide');
             };
