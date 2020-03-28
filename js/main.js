@@ -8,7 +8,6 @@ $(document).ready(function() {
     var filterTemplate = Handlebars.compile(src);
     //end handlebars
 
-    // var fakeArray = [-1];
     var apiBaseUrl = 'https://api.themoviedb.org/3';
     var searchMovie = 'movie';
     var searchTv = 'tv';
