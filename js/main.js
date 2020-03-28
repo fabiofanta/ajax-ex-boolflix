@@ -98,7 +98,7 @@ $(document).ready(function() {
         } else {
             for (var i = 0; i < arrLength; i++) {
                 var string = array[i].name;
-                $(position).find('.card-description .'+ elementName +'-container').append(' <span class="' + elementName + ' api-value">'+ string +'</span> ');
+                $(position).find('.card-description .'+ elementName +'-container').append(' <span class="' + elementName + '">'+ string +'</span> ');
             };
         };
     };
