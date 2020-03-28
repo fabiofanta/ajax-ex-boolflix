@@ -36,9 +36,11 @@ $(document).ready(function() {
 
     };
 
-    function checkIfExist() {
-        $('.card-description .api-value').each(function() {
+    function checkIfExist(position) {
+        $(position).find('.card-description .api-value').each(function() {
             var text = $(this).text();
+            console.log(text);
+            var title = $(this).parent('.card-description').find('#main-title').text();
             if (text == "") {
                 $(this).parent().addClass('hide');
             };
@@ -112,12 +114,11 @@ $(document).ready(function() {
             method:'GET',
             success: function(data) {
                 var cast = data.credits.cast
-                console.log(cast);
                 var genres = data.genres;
                 var arrLen = arrLenCheck(cast);
                 stringJoin(cast,arrLen,position,"cast");
                 stringJoin(genres,genres.length,position,"genre");
-                checkIfExist();
+                checkIfExist(position);
             },
             error: function(err) {
                 alert('Error!');
