@@ -219,35 +219,40 @@ $(document).ready(function() {
             var contentLink = $(this).attr('class').split(' ')[1];
             var cardPosition = '.card-container' + '.' + contentLink + ' .card';
             var optionPosition = '.genre-selector' + '.' + contentLink + ' option'
-            if (genreSel == "" || genreSel == "all") {
-                $(cardPosition).removeClass('hide');
-                $(cardPosition).addClass('show');
+            if (genreSel == 'hide') {
+                $('.card-container' + '.' + contentLink + '').addClass('hide');
             } else {
-                $(optionPosition).each(function() {
-                    var genre = $(this).val().toLowerCase();
-                    if (genre == genreSel) {
-                        var genreId = $(this).data('genre');
-                        $(cardPosition).each(function() {
-                            var genreList = '['+ $(this).data('genre') + ']';
-                            if (genreList.includes(genreId)) {
-                                $(this).removeClass('hide');
-                                $(this).addClass('show');
-                            } else {
-                                $(this).removeClass('show');
-                                $(this).addClass('hide');
-                            };
+                if (genreSel == "all") {
+                    $('.card-container' + '.' + contentLink + '').removeClass('hide');
+                    $(cardPosition).removeClass('hide');
+                    $(cardPosition).addClass('show');
+                } else {
+                    $(optionPosition).each(function() {
+                        var genre = $(this).val().toLowerCase();
+                        if (genre == genreSel) {
+                            var genreId = $(this).data('genre');
+                            $(cardPosition).each(function() {
+                                var genreList = '['+ $(this).data('genre') + ']';
+                                if (genreList.includes(genreId)) {
+                                    $(this).removeClass('hide');
+                                    $(this).addClass('show');
+                                } else {
+                                    $(this).removeClass('show');
+                                    $(this).addClass('hide');
+                                };
 
-                            if ($('.card-container'+'.' +contentLink+'').children('.card').hasClass('show')){
-                                $('.card-container'+'.' +contentLink+'').find('.overlay').addClass('hide');
-                                $('.card-container'+'.' +contentLink+'').find('.overlay').removeClass('show');
+                                if ($('.card-container'+'.' +contentLink+'').children('.card').hasClass('show')){
+                                    $('.card-container'+'.' +contentLink+'').find('.overlay').addClass('hide');
+                                    $('.card-container'+'.' +contentLink+'').find('.overlay').removeClass('show');
 
-                            } else {
-                                $('.card-container'+'.' +contentLink+'').find('.overlay').removeClass('hide');
-                                $('.card-container'+'.' +contentLink+'').find('.overlay').addClass('show');
-                            }
-                        });
-                    };
-                });
+                                } else {
+                                    $('.card-container'+'.' +contentLink+'').find('.overlay').removeClass('hide');
+                                    $('.card-container'+'.' +contentLink+'').find('.overlay').addClass('show');
+                                }
+                            });
+                        };
+                    });
+                };
             };
         });
     };
