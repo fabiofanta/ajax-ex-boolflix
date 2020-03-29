@@ -20,8 +20,10 @@ $(document).ready(function() {
             search();
         };
     });
-
+    apiSearch('batman',searchMovie,'.movie');
+    apiSearch('batman',searchTv,'.tv');
     selector();
+    searchMenu();
 
     function search() {
         $('.card').remove(); // reset search
@@ -261,4 +263,12 @@ $(document).ready(function() {
             };
         });
     };
+
+    function searchMenu() {
+        $('.logo').after().click(function() {
+            $('.search-bar').toggleClass('show-block');
+            $('.selector-container').toggleClass('show-block');
+            $('.category-name').toggleClass('categoryMobile');
+        });
+    }
 });

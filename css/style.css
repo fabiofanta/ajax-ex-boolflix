@@ -31,6 +31,7 @@
        width: 85%;
        height: 100%;
        margin: auto;
+       position: relative;
   }
 
   .logo {
@@ -71,7 +72,7 @@
   }
 
   .card-container {
-      margin: 20px auto;
+      margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
       clear: both;
@@ -80,7 +81,7 @@
   .overlay {
       height: 100%;
       width: 100%;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       color: white;
@@ -93,7 +94,7 @@
       color: white;
       margin: 20px 0;
       position: sticky;
-      top: 116px;
+      top: 136px;
       background-color: black;
       z-index: 1;
   }
@@ -104,6 +105,7 @@
   }
 
   .selector-container {
+      padding-bottom: 20px;
   }
 
   .genre-selector {
@@ -208,6 +210,7 @@
       display: none;
   }
 
+
   @media  all and (max-width:706px) {
       .card-container {
           justify-content: center;
@@ -219,18 +222,21 @@
       .container-fullwidth {
           margin: 5px;
       }
+
       .selector-container {
-          width: 98%;
           background-color: black;
+          display: none;
       }
+
       .search-bar {
           float: none;
           background-color: black;
           line-height: normal;
           height: 120px;
+          display: none;
       }
 
-      .container,.header-container,.genre-selector,#input-bar,#input-button {
+      .container,.header-container,.genre-selector,#input-bar,#input-button,.selector-container {
           width: 100%;
       }
 
@@ -239,13 +245,29 @@
           margin:auto;
       }
 
-      .category-name {
-          text-align: center;
-          top: 264px;
+      .logo:after {
+          content: "\f002";
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 900;
+          font-size: 30px;
+          color: white;
+          position: absolute;
+          top: 25px;
+          left: 15px;
+          cursor: pointer;
       }
 
-      .movie .category-name {
-          margin-top: 40px;
+      .category-name {
+          text-align: center;
+          top: 80px;
+      }
+
+      .categoryMobile {
+          top: 284px;
+      }
+
+      .show-block {
+          display: block;
       }
 
   }
