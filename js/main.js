@@ -30,6 +30,7 @@ $(document).ready(function() {
             apiSearch(searchBData,searchMovie,'.movie');
             apiSearch(searchBData,searchTv,'.tv');
             $('.overlay').addClass('hide');
+            $('.genre-selector').val("");
         } else {
             alert('Inserisci qualcosa');
         };
