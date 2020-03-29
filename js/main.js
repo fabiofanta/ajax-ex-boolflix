@@ -32,7 +32,7 @@ $(document).ready(function() {
             $('.overlay').addClass('hide');
             $('.genre-selector').val("");
         } else {
-            alert('Inserisci qualcosa');
+            alert('We need an input :)');
         };
 
     };
