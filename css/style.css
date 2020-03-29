@@ -54,6 +54,7 @@
       height: 34px;
       border: none;
       border-bottom: 2px solid black;
+      border-radius: 5px;
       padding: 10px 5px;
       font-family: 'Baloo 2', cursive;
       font-size: 16px;
@@ -72,11 +73,9 @@
   }
 
   .card-container {
-      width: 800px;
       margin: 20px auto;
       display: flex;
       flex-wrap: wrap;
-      float: none;
       clear: both;
   }
 
@@ -87,8 +86,6 @@
       align-items: center;
       justify-content: center;
       color: white;
-      position: relative;
-      top: 19px;
   }
 
   .category-name {
@@ -96,7 +93,7 @@
       height: 40px;
       width: 100%;
       color: white;
-      margin-top: 40px;
+      margin: 20px 0;
       position: sticky;
       top: 80px;
       background-color: black;
@@ -112,7 +109,17 @@
       float: right;
       position: sticky;
       top: 80px;
+      z-index: 2;
   }
+
+  .genre-selector {
+      padding:5px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 5px;
+  }
+
+
 
   .card {
       width: 200px;
@@ -139,7 +146,7 @@
       width: 100%;
       color: white;
       background-color: black;
-      padding: 20px;
+      padding: 15px;
       padding-bottom: 60px;
       border: 1px solid white;
       overflow-y:auto;
@@ -199,11 +206,60 @@
       left: 8px;
   }
 
-
   .show {
       display: flex;
   }
 
   .hide {
       display: none;
+  }
+
+  @media  all and (max-width:706px) {
+      .card-container {
+          justify-content: center;
+      }
+  }
+
+  @media  all and (max-width:620px) {
+
+      .container-fullwidth {
+          margin: 5px;
+      }
+      .selector-container {
+          float: none;
+          position: fixed;
+          top: 170px;
+          width: 98%;
+          background-color: black;
+      }
+      .search-bar {
+          float: none;
+          background-color: black;
+          line-height: normal;
+          height: 120px;
+      }
+
+      .container,.header-container,.genre-selector,#input-bar,#input-button {
+          width: 100%;
+      }
+
+      header {
+          height: unset;
+      }
+
+      .logo {
+          height: 80px;
+          display: block;
+          margin:auto;
+      }
+
+      .category-name {
+          text-align: center;
+          top: 207px;
+      }
+
+      .movie .category-name {
+          margin-top: 40px;
+      }
+
   }

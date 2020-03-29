@@ -20,7 +20,7 @@ $(document).ready(function() {
             search();
         };
     });
-
+    
     selector();
 
     function search() {
@@ -29,6 +29,7 @@ $(document).ready(function() {
         if (searchBData.length !== 0) {
             apiSearch(searchBData,searchMovie,'.movie');
             apiSearch(searchBData,searchTv,'.tv');
+            $('.overlay').addClass('hide');
         } else {
             alert('Inserisci qualcosa');
         };
@@ -37,15 +38,12 @@ $(document).ready(function() {
 
     function checkIfExist(position) {
         var originalTitle = $(position).find('.card-description #main-title ').text();
-        console.log(originalTitle);
         var title = $(position).find('.card-description #title').text();
-        console.log(title);
         if (originalTitle == title) {
             $(position).find('.original-title-container').addClass('hide');
         };
         $(position).find('.card-description .api-value').each(function() {
             var text = $(this).text();
-            console.log(text);
             if (text == "") {
                 $(this).parent().addClass('hide');
             };
@@ -71,6 +69,7 @@ $(document).ready(function() {
                 appendDetails(queryType,cardPosition);
                 apiFilter(queryType,filterPosition);
                 starsFill();
+
             },
             error: function(err) {
                 alert('Error!');
@@ -149,6 +148,9 @@ $(document).ready(function() {
             var object = {title:array.title, originTitle: array.original_title,language:languageEng,vote:vote,poster:posterPath(array.poster_path),description:array.overview,id:array.id,genreId:array.genre_ids};
             obNChanger(queryType,object,array);
             var filledTemplate = cardTemplate(object);
+            if (filledTemplate == "") {
+                $('.overlay').addClass('hide');
+            };
             $(position).append(filledTemplate);
         };
 
@@ -164,7 +166,6 @@ $(document).ready(function() {
             success: function(data) {
                 console.log(data);
                 var genres = data.genres;
-                console.log(genres);
                 appendFilters(genres,qryTyp,position);
             },
             error: function(err) {
@@ -180,10 +181,6 @@ $(document).ready(function() {
             var object = {genre:array.name,genreId:array.id};
             var filledTemplate = filterTemplate(object);
             $(position).append(filledTemplate);
-            // if (!fakeArray.includes(array.id)) {
-            //     fakeArray.push(array.id);
-            //     $(position).append(filledTemplate);
-            // };
         };
     };
 
@@ -239,6 +236,10 @@ $(document).ready(function() {
                                 $(this).addClass('hide');
                             };
                         });
+                    // if ($('.movie .card').hasClass('hide')) {
+                    //     $('.overlay').removeClass('hide');
+                    //     $('.overlay').addClass('show');
+                    // }
                     };
                 });
             };
