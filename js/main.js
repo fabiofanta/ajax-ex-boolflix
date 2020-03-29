@@ -149,9 +149,6 @@ $(document).ready(function() {
             var object = {title:array.title, originTitle: array.original_title,language:languageEng,vote:vote,poster:posterPath(array.poster_path),description:array.overview,id:array.id,genreId:array.genre_ids};
             obNChanger(queryType,object,array);
             var filledTemplate = cardTemplate(object);
-            if (filledTemplate == "") {
-                $('.overlay').addClass('hide');
-            };
             $(position).append(filledTemplate);
         };
 
@@ -221,9 +218,11 @@ $(document).ready(function() {
             var optionPosition = '.genre-selector' + '.' + contentLink + ' option'
             if (genreSel == 'hide') {
                 $('.card-container' + '.' + contentLink + '').addClass('hide');
+                $('.genre-selector' + '.' + contentLink + ' option.api-filter').attr('disabled',"");
             } else {
                 if (genreSel == "all") {
                     $('.card-container' + '.' + contentLink + '').removeClass('hide');
+                    $('.genre-selector' + '.' + contentLink + ' option.api-filter').removeAttr('disabled');
                     $(cardPosition).removeClass('hide');
                     $(cardPosition).addClass('show');
                 } else {
