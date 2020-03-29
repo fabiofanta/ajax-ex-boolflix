@@ -217,7 +217,12 @@ $(document).ready(function() {
             var cardPosition = '.card-container' + '.' + contentLink + ' .card';
             var optionPosition = '.genre-selector' + '.' + contentLink + ' option'
             if (genreSel == 'hide') {
-                $('.card-container' + '.' + contentLink + '').addClass('hide');
+                if ($('.card-container').hasClass('hide')) {
+                    alert("Select at least one active category");
+                    $('.genre-selector' + '.' + contentLink + '').val('all');
+                } else {
+                    $('.card-container' + '.' + contentLink + '').addClass('hide');
+                };
             } else {
                 if (genreSel == "all") {
                     $('.card-container' + '.' + contentLink + '').removeClass('hide');

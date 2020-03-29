@@ -22,11 +22,11 @@
                     </div>
                     <div class="selector-container">
                         <select class="genre-selector movie">
-                            <option value="all" selected>All Movies</option>
+                            <option class="all-option" value="all" selected>All Movies</option>
                             <option value="hide">Hide Movies</option>
                         </select>
                         <select class="genre-selector tv">
-                            <option value="all" selected>All TV-Shows</option>
+                            <option class="all-option" value="all" selected>All TV-Shows</option>
                             <option value="hide" >Hide TV-Shows</option>
                         </select>
                     </div>
@@ -89,7 +89,7 @@
 
         </script>
         <script id="filter-template" type="text/x-handlebars-template">
-            <option class="api-filter"data-genre= "{{genreId}}" value="{{genre}}">{{genre}}</option>
+            <option data-genre= "{{genreId}}" value="{{genre}}">{{genre}}</option>
         </script>
 
 
