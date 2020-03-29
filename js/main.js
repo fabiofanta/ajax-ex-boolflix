@@ -20,7 +20,7 @@ $(document).ready(function() {
             search();
         };
     });
-    
+
     selector();
 
     function search() {
@@ -218,6 +218,8 @@ $(document).ready(function() {
             var contentLink = $(this).attr('class').split(' ')[1];
             var cardPosition = '.card-container' + '.' + contentLink + ' .card';
             var optionPosition = '.genre-selector' + '.' + contentLink + ' option'
+            // $('.card-container'+'.' +contentLink+'').find('.overlay').removeClass('show');
+            // $('.card-container'+'.' +contentLink+'').find('.overlay').addClass('hide');
             if (genreSel == "" || genreSel == "all") {
                 $(cardPosition).removeClass('hide');
                 $(cardPosition).addClass('show');
@@ -235,11 +237,14 @@ $(document).ready(function() {
                                 $(this).removeClass('show');
                                 $(this).addClass('hide');
                             };
+
+                            if ($('.card-container'+'.' +contentLink+'').has("div").hasClass('show')) {
+
+                            } else {
+                                $('.card-container'+'.' +contentLink+'').find('.overlay').removeClass('hide');
+                                $('.card-container'+'.' +contentLink+'').find('.overlay').addClass('show');
+                            }
                         });
-                    // if ($('.movie .card').hasClass('hide')) {
-                    //     $('.overlay').removeClass('hide');
-                    //     $('.overlay').addClass('show');
-                    // }
                     };
                 });
             };
