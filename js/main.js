@@ -130,7 +130,7 @@ $(document).ready(function() {
             success: function(data) {
                 var cast = data.credits.cast
                 var genres = data.genres;
-                var arrLen = arrLenCheck(cast); //select only first 5 cast member
+                var arrLen = arrLenCheck(cast); //select only the first 5 cast member
                 appendCrdDetail(cast,arrLen,position,"cast");
                 appendCrdDetail(genres,genres.length,position,"genre");
                 hideIfUseless(position);
