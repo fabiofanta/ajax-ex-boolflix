@@ -223,8 +223,9 @@ $(document).ready(function() {
             var genreSel = $(this).val().toLowerCase();
             var categoryLink = $(this).attr('class').split(' ')[1];
             var cardContainerSel = $('.card-container' + '.' + categoryLink + '');
-            var cardPosition = '.card-container' + '.' + categoryLink + ' .card';
-            var optionPosition = '.genre-selector' + '.' + categoryLink + ' option';
+            var cardPosition = $('.card-container' + '.' + categoryLink + ' .card');
+            var optionPosition = $('.genre-selector' + '.' + categoryLink + ' option');
+            var noMatchPosition = cardContainerSel.find('.no-match-container');
 
 
             if (genreSel == 'hide') {
@@ -237,10 +238,8 @@ $(document).ready(function() {
             } else {
                 if (genreSel == "all") {
                     cardContainerSel.removeClass('hide');
-                    cardContainerSel.find('.no-match-container').addClass('hide');
-                    cardContainerSel.find('.no-match-container').removeClass('show');
-                    $(cardPosition).removeClass('hide');
-                    $(cardPosition).addClass('show');
+                    addRemClass(noMatchPosition,'show','hide');
+                    addRemClass(cardPosition,'hide','show');
                 } else {
                     $(optionPosition).each(function() {
                         var genre = $(this).val().toLowerCase();
@@ -249,22 +248,18 @@ $(document).ready(function() {
                             $(cardPosition).each(function() {
                                 var genreList = '['+ $(this).data('genre') + ']';
                                 if (genreList.includes(genreId)) {
-                                    $(this).removeClass('hide');
-                                    $(this).addClass('show');
+                                    addRemClass(this,'hide','show');
                                 } else {
-                                    $(this).removeClass('show');
-                                    $(this).addClass('hide');
+                                    addRemClass(this,'show','hide');
                                 };
-                                //if select a genre while his relative card container is hide
+                                //if a genre is selected while his relative card container is hide
                                 cardContainerSel.removeClass('hide');
 
                                 //no-match-container toggle
                                 if (cardContainerSel.children('.card').hasClass('show')){
-                                    cardContainerSel.find('.no-match-container').addClass('hide');
-                                    cardContainerSel.find('.no-match-container').removeClass('show');
+                                    addRemClass(noMatchPosition,'show','hide');
                                 } else {
-                                    cardContainerSel.find('.no-match-container').removeClass('hide');
-                                    cardContainerSel.find('.no-match-container').addClass('show');
+                                    addRemClass(noMatchPosition,'hide','show');
                                 }
                             });
                         };
@@ -272,6 +267,11 @@ $(document).ready(function() {
                 };
             };
         });
+    };
+
+    function addRemClass(selector,classToRemove,classToAdd) {
+        $(selector).removeClass(classToRemove);
+        $(selector).addClass(classToAdd);
     };
 
     function toggleSearchMenu() {
