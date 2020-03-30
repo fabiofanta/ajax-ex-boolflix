@@ -12,6 +12,7 @@
 
   .container-fullwidth {
       min-height: 100%;
+      background-color: black;
   }
 
   .container {
@@ -200,6 +201,10 @@
       content: ',';
       position: relative;
       left: 8px;
+  }
+
+  footer {
+      height: 100px;
   }
 
   .show {
