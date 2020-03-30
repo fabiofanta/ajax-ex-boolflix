@@ -16,7 +16,6 @@ $(document).ready(function() {
 
 
 
-
     $('#input-button').click(search);   //search bar input
     $('#input-bar').keypress(function(event) {
         if(event.key =='Enter') {
@@ -28,10 +27,6 @@ $(document).ready(function() {
     apiSearch('batman',searchTv,'.tv');
     filterGenres();
     toggleSearchMenu(); //toggle input/filter bars in mobile views.
-
-
-
-
 
 
 
@@ -226,21 +221,24 @@ $(document).ready(function() {
     function filterGenres() {
         $('.genre-selector').change(function() {
             var genreSel = $(this).val().toLowerCase();
-            var contentLink = $(this).attr('class').split(' ')[1];
-            var cardPosition = '.card-container' + '.' + contentLink + ' .card';
-            var optionPosition = '.genre-selector' + '.' + contentLink + ' option'
+            var categoryLink = $(this).attr('class').split(' ')[1];
+            var cardContainerSel = $('.card-container' + '.' + categoryLink + '');
+            var cardPosition = '.card-container' + '.' + categoryLink + ' .card';
+            var optionPosition = '.genre-selector' + '.' + categoryLink + ' option';
+
+
             if (genreSel == 'hide') {
                 if ($('.card-container').hasClass('hide')) {
                     alert("Select at least one active category");
-                    $('.genre-selector' + '.' + contentLink + '').val('all');
+                    $('.genre-selector' + '.' + categoryLink + '').val('all');
                 } else {
-                    $('.card-container' + '.' + contentLink + '').addClass('hide');
+                    cardContainerSel.addClass('hide');
                 };
             } else {
                 if (genreSel == "all") {
-                    $('.card-container' + '.' + contentLink + '').removeClass('hide');
-                    $('.card-container'+'.' +contentLink+'').find('.no-match-container').addClass('hide');
-                    $('.card-container'+'.' +contentLink+'').find('.no-match-container').removeClass('show');
+                    cardContainerSel.removeClass('hide');
+                    cardContainerSel.find('.no-match-container').addClass('hide');
+                    cardContainerSel.find('.no-match-container').removeClass('show');
                     $(cardPosition).removeClass('hide');
                     $(cardPosition).addClass('show');
                 } else {
@@ -257,15 +255,16 @@ $(document).ready(function() {
                                     $(this).removeClass('show');
                                     $(this).addClass('hide');
                                 };
+                                //if select a genre while his relative card container is hide
+                                cardContainerSel.removeClass('hide');
 
-                                $('.card-container' + '.' + contentLink + '').removeClass('hide');
-                                if ($('.card-container'+'.' +contentLink+'').children('.card').hasClass('show')){
-                                    $('.card-container'+'.' +contentLink+'').find('.no-match-container').addClass('hide');
-                                    $('.card-container'+'.' +contentLink+'').find('.no-match-container').removeClass('show');
-
+                                //no-match-container toggle
+                                if (cardContainerSel.children('.card').hasClass('show')){
+                                    cardContainerSel.find('.no-match-container').addClass('hide');
+                                    cardContainerSel.find('.no-match-container').removeClass('show');
                                 } else {
-                                    $('.card-container'+'.' +contentLink+'').find('.no-match-container').removeClass('hide');
-                                    $('.card-container'+'.' +contentLink+'').find('.no-match-container').addClass('show');
+                                    cardContainerSel.find('.no-match-container').removeClass('hide');
+                                    cardContainerSel.find('.no-match-container').addClass('show');
                                 }
                             });
                         };
