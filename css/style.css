@@ -16,7 +16,6 @@
 
   .container {
       width: 85%;
-      min-height: 100vh;
       margin: auto;
   }
 
@@ -72,7 +71,7 @@
   }
 
   .card-container {
-      margin: 0 auto;
+      margin: auto;
       display: flex;
       flex-wrap: wrap;
       clear: both;
@@ -99,11 +98,6 @@
       z-index: 1;
   }
 
-  .category-name span {
-    font-size: 30px;
-    color: white;
-  }
-
   .selector-container {
       padding-bottom: 20px;
   }
@@ -111,11 +105,11 @@
   .genre-selector {
       padding:5px;
       border-radius: 5px;
-      border: none;
       margin-bottom: 5px;
+      background-color: black;
+      color: white;
+      border: 1px solid grey;
   }
-
-
 
   .card {
       width: 250px;
@@ -228,13 +222,11 @@
       }
 
       .selector-container {
-          background-color: black;
           display: none;
       }
 
       .search-bar {
           float: none;
-          background-color: black;
           line-height: normal;
           height: 120px;
           display: none;
